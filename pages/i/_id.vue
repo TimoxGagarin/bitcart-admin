@@ -55,6 +55,102 @@
                 {{ texts[status].text }}
               </div>
             </div>
+            <v-row class="justify-center">
+              {{ invoice }}
+              <v-col>
+                <v-img
+                  class="mt-8"
+                  max-height="80"
+                  max-width="80"
+                  contain
+                  :src="`${STATIC_PATH}/icon.svg`"
+                />
+                <v-card-title class="subheading font-weight-bold">
+                  Bitcart AI
+                </v-card-title>
+
+                <v-divider></v-divider>
+
+                <v-list dense>
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Invoice ID</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.id }}
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Order ID</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.order_id }}
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Store ID</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.store_id }}
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Total Price</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.order_id }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Sent Amount</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.sent_amount + " " + invoice.paid_currency }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Total Fiat</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.price + " " + invoice.currency }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Exchange Rate</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ calculateTotalPrice() }}
+                    </v-list-item-content>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Amount Due</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      {{ invoice.sent_amount }}
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-list-item>
+                    <v-list-item-content class="grey--text text--darken"
+                      ><strong>Date</strong></v-list-item-content
+                    >
+                    <v-list-item-content class="align-end">
+                      <!-- {{ invoice.paid_date.substring(0, 19).replace("T", " ") }} -->
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-col>
+            </v-row>
           </v-card-text>
         </div>
       </v-card>
@@ -210,6 +306,9 @@ export default {
       return relativeURL
         ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "")
         : baseURL
+    },
+    calculateTotalPrice() {
+      return this.invoice.payments
     },
   },
 }

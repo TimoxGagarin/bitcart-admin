@@ -601,8 +601,8 @@
 import CloseButton from "@/components/CloseButton"
 import DisplayField from "@/components/DisplayField"
 import MetamaskButton from "@/components/MetamaskButton"
-import WalletConnectButton from "@/components/WalletConnectButton"
 import UIExtensionSlot from "@/components/UIExtensionSlot"
+import WalletConnectButton from "@/components/WalletConnectButton"
 export default {
   components: {
     CloseButton,
