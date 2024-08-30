@@ -28,8 +28,8 @@
 </template>
 <script>
 import ItemData from "@/components/ItemData"
-import PermissionSet from "@/components/PermissionSet"
 import JSONField from "@/components/JSONField"
+import PermissionSet from "@/components/PermissionSet"
 export default {
   components: {
     ItemData,
